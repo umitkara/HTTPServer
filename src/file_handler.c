@@ -61,4 +61,6 @@ const char *get_mime_type(const char *file_path) {
     if (strcmp(last_dot, ".gif") == 0) return "image/gif";
     if (strcmp(last_dot, ".svg") == 0) return "image/svg+xml";
     if (strcmp(last_dot, ".ico") == 0) return "image/x-icon";
+
+    return NULL;
 }

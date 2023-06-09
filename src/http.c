@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include <string.h>
 // #include <unistd.h>
-#include <io.h>
 #include <winsock2.h>
 #include "http.h"
 
@@ -23,7 +22,7 @@ void send_http_response(int client_socket, const char *status_code, const char *
 
     // Send header
     // send(client_socket, header, strlen(header), 0);
-    send(client_socket, header, strlen(header), 0);
+    send(client_socket, header, (int)strlen(header), 0);
 
 
     // Send body

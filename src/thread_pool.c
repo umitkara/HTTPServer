@@ -76,7 +76,7 @@ ThreadPool *thread_pool_create(int thread_count) {
         exit(EXIT_FAILURE);
     }
 
-    for (int i = 0; i < thread_count; i++) {
+    for (size_t i = 0; i < thread_count; i++) {
         HANDLE thread_handle = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE) thread_pool_worker, thread_pool, 0, NULL);
         if (thread_handle == NULL) {
             fprintf(stderr, "Could not create thread %zu\n", i);

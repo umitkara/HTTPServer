@@ -83,7 +83,7 @@ bool start_http_server(int port) {
 
     if (server_socket < 0) {
         fprintf(stderr, "Error creating socket.\n");
-        close(server_socket);
+        close((int)server_socket);
         return false;
     }
 
@@ -112,20 +112,20 @@ bool start_http_server(int port) {
 //    }
     if (bind(server_socket, (struct sockaddr *)&server_address, sizeof(server_address)) == -1) {
         fprintf(stderr, "Error binding socket.\n");
-        close(server_socket);
+        close((int)server_socket);
         return false;
     }
 
     if (listen(server_socket, 10) == -1) {
         fprintf(stderr, "Error listening socket.\n");
-        close(server_socket);
+        close((int)server_socket);
         return false;
     }
 
     ThreadPool *thread_pool = thread_pool_create(4);
     if (!thread_pool) {
         fprintf(stderr, "Error creating thread pool.\n");
-        close(server_socket);
+        close((int)server_socket);
         return false;
     }
 
@@ -134,7 +134,7 @@ bool start_http_server(int port) {
     while (1) {
         struct sockaddr_in client_address;
         int client_address_length = sizeof(client_address);
-        int client_socket = accept(server_socket, (struct sockaddr *) &client_address, &client_address_length);
+        int client_socket = (int)accept(server_socket, (struct sockaddr *) &client_address, &client_address_length);
 
         if (client_socket == -1) {
             fprintf(stderr, "Error accepting client.\n");
@@ -157,6 +157,6 @@ bool start_http_server(int port) {
     }
 
     thread_pool_destroy(thread_pool);
-    close(server_socket);
+    close((int)server_socket);
     return true;
 }
