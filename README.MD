@@ -1,4 +1,4 @@
-# Http Serve
+# Http Server
 
 A simple Http Server implementation with C for Windows.
 There might some mojor issues on the thread pool implementations, like memory leaks, so it is not safe to use.
