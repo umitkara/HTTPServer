@@ -1,0 +1,6 @@
+{
+    "files.associations": {
+        "http.h": "c",
+        "file_handler.h": "c"
+    }
+}
